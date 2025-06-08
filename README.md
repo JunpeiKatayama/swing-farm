@@ -9,7 +9,7 @@
 ## 🎯 主な機能
 
 - **自動攻撃システム**: プレイヤーの前方 3 ブロック以内の敵対 Mob を自動検出・攻撃
-- **ショートカットキー**: `Ctrl + A` で機能の ON/OFF 切り替え
+- **ショートカットキー**: `F8` で機能の ON/OFF 切り替え
 - **視線チェック**: 壁越しの攻撃を防止
 - **攻撃クールダウン**: 自然な攻撃間隔（1 秒）を実現
 - **安全機能**: 剣を装備している時のみ動作
@@ -22,7 +22,7 @@ MOD が動作するための条件：
 - メインハンドに剣（SwordItem）を装備していること
 - プレイヤーの前方 3 ブロック以内に敵対 Mob が存在すること
 - その Mob がプレイヤーから見える位置にいること
-- 機能が ON になっていること（`Ctrl + A`で切り替え）
+- 機能が ON になっていること（`F8`で切り替え）
 
 ## 🛠️ 必要環境
 
@@ -35,7 +35,7 @@ MOD が動作するための条件：
 
 1. [Fabric Loader](https://fabricmc.net/use/installer/)をインストール
 2. [Fabric API](https://modrinth.com/mod/fabric-api)をダウンロード
-3. [Releases](../../releases)から最新の SwingFarm-fabric-1.21.3-x.x.x.jar をダウンロード
+3. [Releases](../../releases)から、お使いの Minecraft バージョンに対応した jar ファイルをダウンロード
 4. `.minecraft/mods`フォルダに Fabric API と SwingFarm の jar ファイルを配置
 5. Minecraft を起動
 
@@ -43,16 +43,16 @@ MOD が動作するための条件：
 
 1. **Minecraft にログイン**
 2. **剣をメインハンドに装備**
-3. **`Ctrl + A`を押して機能を ON**
+3. **`F8`を押して機能を ON**
    - チャットに「自動攻撃機能: 有効」と表示されます
 4. **Mob 処理トラップの前で待機**
 5. **敵対 Mob が現れると自動で攻撃開始**
-6. **`Ctrl + A`で機能を OFF**
+6. **`F8`で機能を OFF**
 
 ### キーバインド設定
 
 - **設定 → 操作設定 → キー設定**で「SwingFarm」カテゴリを確認
-- デフォルトは`Ctrl + A`ですが、お好みに変更可能
+- デフォルトは`F8`ですが、お好みに変更可能
 
 ## 🎨 スクリーンショット
 
@@ -66,7 +66,7 @@ MOD が動作するための条件：
 ### ビルド方法
 
 ```bash
-git clone https://github.com/yourusername/SwingFarm.git
+git clone https://github.com/<ユーザー名>/SwingFarm.git
 cd SwingFarm
 ./gradlew build
 ```
@@ -98,6 +98,7 @@ SwingFarm/
 
 ## ⚠️ 注意事項
 
+- この MOD は現状のまま (as-is) で提供され、作者による永続的なメンテナンスや個別のサポートは保証されません。
 - **クライアントサイド MOD**のため、サーバーにインストールする必要はありません
 - **PvP サーバー**での使用は利用規約を確認してください
 - **自動化 MOD**のため、一部サーバーで禁止されている場合があります
@@ -127,12 +128,6 @@ SwingFarm/
 3. 変更をコミット (`git commit -m 'Add some AmazingFeature'`)
 4. ブランチにプッシュ (`git push origin feature/AmazingFeature`)
 5. プルリクエストを開く
-
-## 📞 サポート
-
-- **Discord**: [リンクがあれば記載]
-- **Twitter**: [リンクがあれば記載]
-- **Email**: [連絡先があれば記載]
 
 ---
 
