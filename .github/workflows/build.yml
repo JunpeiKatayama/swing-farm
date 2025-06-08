@@ -25,7 +25,14 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build with Gradle
-        run: ./gradlew build
+        env:
+          MOD_VERSION: ${{ github.ref_name }}
+        run: |
+          if [[ "$MOD_VERSION" == v* ]]; then
+            ./gradlew build -Pmod_version=${MOD_VERSION#v}
+          else
+            ./gradlew build
+          fi
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
