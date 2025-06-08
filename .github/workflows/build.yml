@@ -1,12 +1,12 @@
-name: Build SwingFarm
+name: Build and Release
 
 on:
   push:
     branches: [main, master]
+    tags:
+      - "v*"
   pull_request:
     branches: [main, master]
-  release:
-    types: [published]
 
 jobs:
   build:
@@ -33,13 +33,24 @@ jobs:
           name: SwingFarm-Build
           path: build/libs/*.jar
 
-      - name: Upload to Release
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/libs/swingfarm-fabric-1.21.3-${{ github.event.release.tag_name }}.jar
-          asset_name: SwingFarm-fabric-1.21.3-${{ github.event.release.tag_name }}.jar
-          asset_content_type: application/java-archive
+        run: |
+          set -e
+          TAG_NAME="${{ github.ref_name }}"
+          MOD_VERSION="${TAG_NAME#v}"
+
+          NOTES_TEMPLATE=".github/release.md"
+          RELEASE_NOTES="release-notes.md"
+
+          cp "$NOTES_TEMPLATE" "$RELEASE_NOTES"
+          sed -i "s/%%VERSION%%/$TAG_NAME/g" "$RELEASE_NOTES"
+          sed -i "s/%%MOD_VERSION%%/$MOD_VERSION/g" "$RELEASE_NOTES"
+
+          gh release create "$TAG_NAME" \
+            --title "$TAG_NAME" \
+            --notes-file "$RELEASE_NOTES" \
+            --prerelease \
+            "build/libs/swingfarm-fabric-1.21.5-$MOD_VERSION.jar"

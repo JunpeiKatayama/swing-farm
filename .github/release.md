@@ -1,4 +1,4 @@
-# SwingFarm ${release.tag_name}
+# SwingFarm %%VERSION%%
 
 Minecraft Java Edition 1.21.x 向けのクライアントサイド MOD「SwingFarm」のリリースです。
 
@@ -13,7 +13,7 @@ Minecraft Java Edition 1.21.x 向けのクライアントサイド MOD「SwingFa
 ## 📦 インストール方法 (Installation)
 
 1.  [Fabric Loader](https://fabricmc.net/use/installer/) と [Fabric API](https://modrinth.com/mod/fabric-api) を導入します。
-2.  このページの下部にある `Assets` から `swingfarm-fabric-1.21.3-${release.tag_name}.jar` をダウンロードします。
+2.  このページの下部にある `Assets` から `swingfarm-fabric-1.21.5-%%MOD_VERSION%%.jar` をダウンロードします。
 3.  ダウンロードした `.jar` ファイルを `.minecraft/mods` フォルダに配置します。
 4.  Minecraft を起動します。
 
