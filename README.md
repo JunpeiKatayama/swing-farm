@@ -1,85 +1,87 @@
+[日本語](README.ja.md)
+
 # SwingFarm
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x-green.svg)](https://minecraft.net)
 [![Fabric](https://img.shields.io/badge/Fabric-Supported-orange.svg)](https://fabricmc.net)
 [![License](https://img.shields.io/badge/License-CC0--1.0-blue.svg)](LICENSE)
 
-**SwingFarm** は、Minecraft Java Edition 1.21.x 向けのクライアントサイド MOD です。Mob 処理トラップでの待機時間を自動化し、目の前に現れた敵対 Mob を自動で攻撃します。
+**SwingFarm** is a client-side mod for Minecraft Java Edition 1.21.x. It automates the waiting time in mob farms by automatically attacking hostile mobs that appear in front of you.
 
-## 🎯 主な機能
+## 🎯 Features
 
-- **自動攻撃システム**: プレイヤーの前方 3 ブロック以内の敵対 Mob を自動検出・攻撃
-- **ショートカットキー**: `F8` で機能の ON/OFF 切り替え
-- **視線チェック**: 壁越しの攻撃を防止
-- **攻撃クールダウン**: 自然な攻撃間隔（1 秒）を実現
-- **安全機能**: 剣を装備している時のみ動作
+- **Auto-Attack System**: Automatically detects and attacks hostile mobs within 3 blocks in front of the player.
+- **Shortcut Key**: Toggle the mod's functionality ON/OFF with `F8`.
+- **Line-of-Sight Check**: Prevents attacking mobs through walls.
+- **Attack Cooldown**: Implements a natural attack interval (1 second).
+- **Safety Feature**: Only operates when a sword is equipped.
 
-## 📋 動作条件
+## 📋 Conditions for Operation
 
-MOD が動作するための条件：
+The mod will operate under the following conditions:
 
-- プレイヤーが生存していること
-- メインハンドに剣（SwordItem）を装備していること
-- プレイヤーの前方 3 ブロック以内に敵対 Mob が存在すること
-- その Mob がプレイヤーから見える位置にいること
-- 機能が ON になっていること（`F8`で切り替え）
+- The player is alive.
+- A sword (SwordItem) is equipped in the main hand.
+- A hostile mob is within 3 blocks in front of the player.
+- The mob is visible to the player.
+- The feature is enabled (toggled with `F8`).
 
-## 🛠️ 必要環境
+## 🛠️ Requirements
 
 - **Minecraft**: Java Edition 1.21.x
-- **Mod Loader**: Fabric Loader 0.16.0 以上
-- **依存関係**: Fabric API
-- **Java**: 17 以上
+- **Mod Loader**: Fabric Loader 0.16.0 or higher
+- **Dependencies**: Fabric API
+- **Java**: 17 or higher
 
-## 📦 インストール方法
+## 📦 Installation
 
-1. [Fabric Loader](https://fabricmc.net/use/installer/)をインストール
-2. [Fabric API](https://modrinth.com/mod/fabric-api)をダウンロード
-3. [Releases](../../releases)から、お使いの Minecraft バージョンに対応した jar ファイルをダウンロード
-4. `.minecraft/mods`フォルダに Fabric API と SwingFarm の jar ファイルを配置
-5. Minecraft を起動
+1. Install [Fabric Loader](https://fabricmc.net/use/installer/).
+2. Download [Fabric API](https://modrinth.com/mod/fabric-api).
+3. Download the appropriate `.jar` file for your Minecraft version from the [Releases](../../releases).
+4. Place the Fabric API and SwingFarm `.jar` files into your `.minecraft/mods` folder.
+5. Launch Minecraft.
 
-## 🎮 使用方法
+## 🎮 Usage
 
-1. **Minecraft にログイン**
-2. **剣をメインハンドに装備**
-3. **`F8`を押して機能を ON**
-   - チャットに「自動攻撃機能: 有効」と表示されます
-4. **Mob 処理トラップの前で待機**
-5. **敵対 Mob が現れると自動で攻撃開始**
-6. **`F8`で機能を OFF**
+1. **Log in to Minecraft.**
+2. **Equip a sword in your main hand.**
+3. **Press `F8` to turn the feature ON.**
+   - A message "Auto-attack: Enabled" will appear in the chat.
+4. **Wait in front of a mob farm.**
+5. **The mod will automatically attack hostile mobs as they appear.**
+6. **Press `F8` to turn the feature OFF.**
 
-### キーバインド設定
+### Keybind Configuration
 
-- **設定 → 操作設定 → キー設定**で「SwingFarm」カテゴリを確認
-- デフォルトは`F8`ですが、お好みに変更可能
+- You can change the keybinding in **Options → Controls → Key Binds** under the "SwingFarm" category.
+- The default is `F8`.
 
-## 🎨 スクリーンショット
+## 🎨 Screenshots
 
-### チャットメッセージ
+### Chat Messages
 
-- 🟢 有効時: `[SwingFarm] 自動攻撃機能: 有効`
-- 🔴 無効時: `[SwingFarm] 自動攻撃機能: 無効`
+- 🟢 Enabled: `[SwingFarm] Auto-attack: Enabled`
+- 🔴 Disabled: `[SwingFarm] Auto-attack: Disabled`
 
-## 🔧 開発者向け情報
+## 🔧 For Developers
 
-### ビルド方法
+### How to Build
 
 ```bash
-git clone https://github.com/<ユーザー名>/SwingFarm.git
+git clone https://github.com/<username>/SwingFarm.git
 cd SwingFarm
 ./gradlew build
 ```
 
-### 技術仕様
+### Technical Specifications
 
-- **イベント**: `ClientTickEvents.END_CLIENT_TICK`を使用
-- **攻撃範囲**: プレイヤー前方 3 ブロック以内
-- **攻撃判定**: `HostileEntity`クラスベースの敵対 Mob 判定
-- **視線チェック**: レイキャスト（Raycast）を使用
-- **クールダウン**: 20tick（1 秒）
+- **Event**: Uses `ClientTickEvents.END_CLIENT_TICK`.
+- **Attack Range**: Within 3 blocks in front of the player.
+- **Targeting**: Based on the `HostileEntity` class.
+- **Line-of-Sight Check**: Uses raycasting.
+- **Cooldown**: 20 ticks (1 second).
 
-### プロジェクト構造
+### Project Structure
 
 ```
 SwingFarm/
@@ -96,38 +98,38 @@ SwingFarm/
 └── settings.gradle
 ```
 
-## ⚠️ 注意事項
+## ⚠️ Disclaimer
 
-- この MOD は現状のまま (as-is) で提供され、作者による永続的なメンテナンスや個別のサポートは保証されません。
-- **クライアントサイド MOD**のため、サーバーにインストールする必要はありません
-- **PvP サーバー**での使用は利用規約を確認してください
-- **自動化 MOD**のため、一部サーバーで禁止されている場合があります
+- This mod is provided "as-is," and the author does not guarantee perpetual maintenance or individual support.
+- As a **client-side mod**, it does not need to be installed on the server.
+- Please check the terms of service before using on **PvP servers**.
+- The use of **automation mods** may be prohibited on some servers.
 
-## 🐛 バグ報告・要望
+## 🐛 Bug Reports & Feature Requests
 
-バグを発見した場合や機能要望がある場合は、[Issues](../../issues)からご報告ください。
+If you find a bug or have a feature request, please report it via [Issues](../../issues).
 
-### 報告時の情報
+### Information to Include in Reports
 
-- Minecraft バージョン
-- Fabric Loader バージョン
-- Fabric API バージョン
-- SwingFarm バージョン
-- 発生した問題の詳細
+- Minecraft version
+- Fabric Loader version
+- Fabric API version
+- SwingFarm version
+- Detailed description of the issue
 
-## 📜 ライセンス
+## 📜 License
 
-このプロジェクトは[CC0-1.0 License](LICENSE)の下で公開されています。
+This project is licensed under the [CC0-1.0 License](LICENSE).
 
-## 🤝 貢献
+## 🤝 Contributing
 
-プルリクエストや改善提案は大歓迎です！
+Pull requests and suggestions for improvement are welcome!
 
-1. プロジェクトをフォーク
-2. 機能ブランチを作成 (`git checkout -b feature/AmazingFeature`)
-3. 変更をコミット (`git commit -m 'Add some AmazingFeature'`)
-4. ブランチにプッシュ (`git push origin feature/AmazingFeature`)
-5. プルリクエストを開く
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
