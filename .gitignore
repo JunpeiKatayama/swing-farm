@@ -1,5 +1,6 @@
 # Built application files
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 *.zip
 
 # Gradle
