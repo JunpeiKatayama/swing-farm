@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "swingfarm",
+  "version": "${version}",
+
+  "name": "SwingFarm",
+  "description": "自動でMobを攻撃するクライアントサイドMOD。Mob処理トラップの待機時間を自動化します。",
+  "authors": ["Example Author"],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/swingfarm/icon.png",
+
+  "environment": "client",
+
+  "entrypoints": {
+    "client": ["com.example.swingfarm.SwingFarmMod"]
+  },
+
+  "mixins": [],
+
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.0",
+    "java": ">=17"
+  },
+  "suggests": {}
+}

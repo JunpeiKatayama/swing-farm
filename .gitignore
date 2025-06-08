@@ -1,0 +1,25 @@
+# Built application files
+*.jar
+*.zip
+
+# Gradle
+.gradle
+build/
+
+# Logs
+logs/
+
+# Development files
+run/
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VSCode
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db 
