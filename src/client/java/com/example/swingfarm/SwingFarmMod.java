@@ -87,7 +87,7 @@ public class SwingFarmMod implements ClientModInitializer {
         // プレイヤーの前方3ブロック以内の敵対Mobを検索
         MobEntity targetMob = findNearestHostileMob(player, world);
         
-        if (targetMob != null && canSeeEntity(player, targetMob)) {
+        if (targetMob != null) {
             // 攻撃実行
             performAttack(client, player, targetMob);
         }
@@ -131,8 +131,8 @@ public class SwingFarmMod implements ClientModInitializer {
         
         // プレイヤーの前方3ブロック以内のボックスを作成
         Box searchBox = new Box(
-            playerPos.x - ATTACK_RANGE, playerPos.y - 1, playerPos.z - ATTACK_RANGE,
-            playerPos.x + ATTACK_RANGE, playerPos.y + 2, playerPos.z + ATTACK_RANGE
+            playerPos.x - ATTACK_RANGE, playerPos.y - ATTACK_RANGE, playerPos.z - ATTACK_RANGE,
+            playerPos.x + ATTACK_RANGE, playerPos.y + ATTACK_RANGE, playerPos.z + ATTACK_RANGE
         );
         
         List<Entity> entities = world.getOtherEntities(player, searchBox);
@@ -153,15 +153,8 @@ public class SwingFarmMod implements ClientModInitializer {
             // プレイヤーとの距離をチェック
             double distance = playerPos.distanceTo(entity.getPos());
             if (distance <= ATTACK_RANGE && distance < nearestDistance) {
-                // プレイヤーの前方にいるかチェック
-                Vec3d toEntity = entity.getPos().subtract(playerPos).normalize();
-                double dotProduct = lookDirection.dotProduct(toEntity);
-                
-                // 前方約90度以内にいる場合（dotProduct > 0.3）
-                if (dotProduct > 0.3) {
-                    nearestMob = mobEntity;
-                    nearestDistance = distance;
-                }
+                nearestMob = mobEntity;
+                nearestDistance = distance;
             }
         }
         
@@ -191,29 +184,6 @@ public class SwingFarmMod implements ClientModInitializer {
         // その他の敵対的なMobかどうかをチェック
         // プレイヤーをターゲットにしている場合は敵対的とみなす
         return mobEntity.getTarget() instanceof PlayerEntity;
-    }
-    
-    /**
-     * プレイヤーがエンティティを見ることができるかチェック
-     */
-    private boolean canSeeEntity(PlayerEntity player, Entity target) {
-        Vec3d playerEyePos = player.getEyePos();
-        Vec3d targetPos = target.getPos().add(0, target.getHeight() / 2, 0);
-        
-        // レイキャストを使用して視線が通っているかチェック
-        RaycastContext context = new RaycastContext(
-            playerEyePos, 
-            targetPos, 
-            RaycastContext.ShapeType.COLLIDER, 
-            RaycastContext.FluidHandling.NONE, 
-            player
-        );
-        
-        HitResult hitResult = player.getWorld().raycast(context);
-        
-        // ブロックに当たらない、または対象エンティティに当たる場合は見える
-        return hitResult.getType() == HitResult.Type.MISS || 
-               (hitResult instanceof EntityHitResult entityHit && entityHit.getEntity() == target);
     }
     
     /**
